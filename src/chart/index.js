@@ -1,41 +1,40 @@
-import React, { useState, useEffect } from "react";
-import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, CartesianGrid, Tooltip, Legend } from 'recharts';
+import React, { useState, useEffect } from 'react'
+import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, CartesianGrid, Tooltip, Legend } from 'recharts'
 
 const Chart = () => {
-    const [ isError, setIsError ] = useState(false);
-    const [ errorMessage, setErrorMessage ] = useState(false);
-    const [ selectFilter, setSelectFilter ] = useState(7);
-    const [ chartData, setChartData] = useState([]);
+  const [isError, setIsError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState(false)
+  const [selectFilter, setSelectFilter] = useState(7)
+  const [chartData, setChartData] = useState([])
 
-    useEffect(()=>{
-        setIsError(false);
-        const fetchData = async () => {
-
-            try{
-                const response = await fetch( window.graphWidgetSettings.siteUrl + 'rankmath/v1/widget/dashboard' );
-                const data = await response.json();
-                setChartData(data);
-            }catch (error){
-                setIsError(true);
-                setErrorMessage(error);
-            }
-        }
-
-        fetchData();
-    },[]);
-
-    const handleChange = (event) => {
-        setSelectFilter(event.target.value);
+  useEffect(() => {
+    setIsError(false)
+    const fetchData = async () => {
+      try {
+        const response = await fetch(window.graphWidgetSettings.siteUrl + 'rankmath/v1/widget/dashboard')
+        const data = await response.json()
+        setChartData(data)
+      } catch (error) {
+        setIsError(true)
+        setErrorMessage(error)
+      }
     }
 
-    const filteredData = chartData.slice(-selectFilter);
+    fetchData()
+  }, [])
 
-    return (
+  const handleChange = (event) => {
+    setSelectFilter(event.target.value)
+  }
+
+  const filteredData = chartData.slice(-selectFilter)
+
+  return (
         <div className={'dashboard-widget'}>
             {
-                isError ?
-                    <div className={'dashboard-widget-error'}>Error in loading Data : <br/> {errorMessage}</div> :
-                    <div className={'dashboard-widget-container'}>
+                isError
+                  ? <div className={'dashboard-widget-error'}>Error in loading Data : <br/> {errorMessage}</div>
+                  : <div className={'dashboard-widget-container'}>
                         <div className={'dashboard-select'}>
                             <select
                                 id={'filter-select'}
@@ -61,6 +60,6 @@ const Chart = () => {
                     </div>
             }
         </div>
-    )
-};
-export default Chart;
+  )
+}
+export default Chart
