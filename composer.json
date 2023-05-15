@@ -7,7 +7,7 @@
     },
     "autoload": {
         "psr-4": {
-            "RankMath\\Graph\\Widget": "inc/"
+            "RankMath\\Graph\\Widget\\": "inc/"
         }
     },
     "authors": [
@@ -18,7 +18,16 @@
     ],
     "config": {
         "allow-plugins": {
-            "composer/installers": true
+            "composer/installers": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
         }
+    },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
+        "wp-coding-standards/wpcs": "^2.3"
+    },
+    "scripts": {
+        "lint:phpcs" : "@php ./vendor/bin/phpcs .",
+        "lint:fix" : "@php ./vendor/bin/phpcbf ."
     }
 }

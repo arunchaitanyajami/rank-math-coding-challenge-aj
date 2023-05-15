@@ -12,3 +12,37 @@
  */
 
 namespace RankMath\Graph\Widget;
+
+define( 'RMGW_DIR', plugin_dir_path( __FILE__ ) );
+define( 'RMGW_URL', plugin_dir_url( __FILE__ ) );
+
+require RMGW_DIR . 'vendor/autoload.php';
+
+use RankMath\Graph\Widget\RestApi\GraphWidgetApi;
+use RankMath\Graph\Widget\Widgets\Dashboard;
+
+/**
+ * Load Dashboard Widget.
+ */
+( new Dashboard() )->init();
+( new GraphWidgetApi() )->register_rest_endpoint();
+
+/**
+ * Setup static data when activating this plugin.
+ */
+register_activation_hook(
+	__FILE__,
+	function () {
+		if ( ! get_option( 'rmgw_graph_widget_data' ) ) {
+			$options = array();
+			for ( $i = 1; $i <= 30; $i ++ ) {
+				$options[] = array(
+					'day'   => "Day {$i}",
+					'value' => rand( 0, 100 ),
+				);
+			}
+
+			add_option( 'rmgw_graph_widget_data', $options );
+		}
+	}
+);
