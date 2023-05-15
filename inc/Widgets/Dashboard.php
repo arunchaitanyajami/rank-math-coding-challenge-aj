@@ -38,7 +38,7 @@ class Dashboard {
 	 * @return void
 	 */
 	public function render(): void {
-		echo '<div id="dashboard-widget"></div>';
+		echo '<div id="rmgw_dashboard-widget"></div>';
 
 	}
 
