@@ -1,0 +1,43 @@
+version : '3'
+
+services:
+  mysql:
+    image: mysql:latest
+    restart: always
+    env_file: .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+  wordpress:
+    image: wordpress:6.2-php8.1-apache
+    restart: always
+    env_file: .env
+    depends_on:
+      - mysql
+    ports:
+      - '80:80'
+      - '443:443'
+    environment:
+      WORDPRESS_DB_USER: ${MYSQL_USER}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ./:/var/www/html/wp-content/plugins/rank-math-coding-challenge
+      - wp_data:/var/www/html/wp-content
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - '8080:80'
+    env_file: .env
+    environment:
+      PMA_HOST: ${MYSQL_DB_HOST}
+      MYSQL_ROOT_PASSWORD: ''
+      MYSQL_USERNAME: 'root'
+
+volumes:
+  db_data: {}
+  wp_data: {}
