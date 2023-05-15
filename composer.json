@@ -1,0 +1,24 @@
+{
+    "name": "arunchaitanyajami/rank-math-coding-challenge",
+    "description": "A custom WordPress dashboard Widget that displays Recharts line chart with filters of last 7 days, 15 days, and 1 month.",
+    "require": {
+        "php": ">=8.0",
+        "composer/installers": "^2.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "RankMath\\Graph\\Widget": "inc/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Arun Chaitanya Jami",
+            "email": "arunchaitanyajami@gmail.com"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    }
+}

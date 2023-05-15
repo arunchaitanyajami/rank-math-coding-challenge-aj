@@ -10,3 +10,5 @@
  *
  * @package WordPress
  */
+
+namespace RankMath\Graph\Widget;
