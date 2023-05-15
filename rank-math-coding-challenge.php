@@ -61,6 +61,8 @@ function rmgw_dashboard_widget_enqueue_scripts() : void {
 	wp_enqueue_script( 'rmgw_rechart_component_js', RMGW_URL . 'dist/index.js', array(), RMGW_PLUGIN_VERSION, true );
 	wp_localize_script( 'rmgw_rechart_component_js', 'graphWidgetSettings', $widget_setting );
 	wp_enqueue_script( 'rmgw_rechart_component_js' );
+
+	wp_enqueue_style('rmgw_rechart_component_css',RMGW_URL . 'dist/styles.min.css', );
 }
 
 add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\rmgw_dashboard_widget_enqueue_scripts' );

@@ -1,0 +1,21 @@
+.dashboard-widget{
+  padding: 10px;
+
+  &-error{
+    padding: 20px;
+  }
+
+  .dashboard-select{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+  }
+
+  .recharts-responsive-container{
+    border: 1px solid #ccc;
+
+    .recharts-surface{
+      margin: 10px -20px;
+    }
+  }
+}
