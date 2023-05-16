@@ -3,7 +3,6 @@ import 'resize-observer-polyfill'
 import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, CartesianGrid, Tooltip, Legend } from 'recharts'
 
 const Chart = ({ chartHeight = '100%' }) => {
-
   /**
    * Data state.
    */
@@ -14,7 +13,6 @@ const Chart = ({ chartHeight = '100%' }) => {
    * Error states.
    */
   const [isError, setIsError] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
     setIsError(false)
@@ -25,7 +23,6 @@ const Chart = ({ chartHeight = '100%' }) => {
         setChartData(data)
       } catch (error) {
         setIsError(true)
-        setErrorMessage(error)
       }
     }
 
@@ -67,5 +64,21 @@ const Chart = ({ chartHeight = '100%' }) => {
           </div>
         </div>
   )
+}
+
+const anyOf = (allowedTypes) => (props, propsName, componentName) => {
+  const propValue = props[propsName]
+  const validTypes = Array.isArray(allowedTypes) ? allowedTypes : [allowedTypes]
+  const isValid = validTypes.some((type) => {
+    return typeof propValue === 'string' || typeof propValue === 'number'
+  })
+
+  if (!isValid) {
+    return new Error('Invalid Pops type Supplied')
+  }
+}
+
+Chart.propTypes = {
+  chartHeight: anyOf(['string', 'number'])
 }
 export default Chart
