@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import 'resize-observer-polyfill'
 import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, CartesianGrid, Tooltip, Legend } from 'recharts'
 
-const Chart = () => {
+const Chart = ({ chartHeight = '100%' }) => {
 
   /**
    * Data state.
@@ -54,8 +54,8 @@ const Chart = () => {
                 <option value={30}>Last 30 DAYS</option>
               </select>
             </div>
-            <ResponsiveContainer width={'100%'} height={470} aspect={1}>
-              <LineChart width={'100%'} height={'100%'} data={filteredData}>
+            <ResponsiveContainer width={'100%'} height={chartHeight} aspect={1}>
+              <LineChart width={'100%'} height={470} data={filteredData}>
                 <CartesianGrid strokeDasharray="3,4" />
                 <XAxis dataKey="day" />
                 <YAxis dataKey="value" />

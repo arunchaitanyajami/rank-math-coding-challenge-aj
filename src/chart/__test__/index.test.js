@@ -49,7 +49,7 @@ describe('Chart Component', function () {
         originalUseState.mockReturnValueOnce([ data, jest.fn() ]);
 
         await act(async () => {
-            renderer = render(<Chart />);
+            renderer = render(<Chart chartHeight={470} />);
         })
 
         const { container } = renderer;
@@ -62,7 +62,7 @@ describe('Chart Component', function () {
         originalUseState.mockReturnValueOnce([ data, jest.fn() ]);
 
         await act(async () => {
-            renderer = render(<Chart />);
+            renderer = render(<Chart chartHeight={470} />);
         })
 
         const { container } = renderer;
@@ -76,7 +76,7 @@ describe('Chart Component', function () {
         originalUseState.mockReturnValueOnce([ data, jest.fn() ]);
 
         await act(async () => {
-            renderer = render(<Chart />);
+            renderer = render(<Chart chartHeight={470} />);
         })
 
         const { container } = renderer;
@@ -98,7 +98,7 @@ describe('Chart Component', function () {
         originalUseState.mockReturnValueOnce([ data, jest.fn() ]);
 
         await act(async () => {
-            renderer = render(<Chart />);
+            renderer = render(<Chart chartHeight={470} />);
         })
 
         const { getByTestId, container } = renderer;
