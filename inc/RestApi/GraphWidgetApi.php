@@ -27,13 +27,14 @@ class GraphWidgetApi {
 	 *
 	 * @return bool
 	 */
-	public function add_endpoint() : bool {
+	public function add_endpoint(): bool {
 		return register_rest_route(
 			'rankmath/v1/widget',
 			'/dashboard',
 			array(
-				'METHOD'   => 'GET',
-				'callback' => array( $this, 'endpoint_callback' ),
+				'METHOD'              => \WP_REST_Server::READABLE,
+				'callback'            => array( $this, 'endpoint_callback' ),
+				'permission_callback' => array( $this, 'permission_callback' ),
 			)
 		);
 	}
@@ -47,5 +48,12 @@ class GraphWidgetApi {
 		$graph_data = get_option( 'rmgw_graph_widget_data', array() );
 
 		return rest_ensure_response( $graph_data );
+	}
+
+	/**
+	 * Check if the current user can access the dashboard.
+	 */
+	public function permission_callback(): bool {
+		return current_user_can( 'manage_options' );
 	}
 }

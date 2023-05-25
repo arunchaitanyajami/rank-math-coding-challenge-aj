@@ -28,8 +28,7 @@ class Dashboard {
 	 * @return void
 	 */
 	public function add_dashboard_widget(): void {
-		wp_add_dashboard_widget( 'rankmath_dashboard_widget', 'Graph Widget', array( $this, 'render' ) );
-
+		wp_add_dashboard_widget( 'rankmath_dashboard_widget', __( 'Graph Widget', 'rmgw-textdomain' ), array( $this, 'render' ) );
 	}
 
 	/**
@@ -41,6 +40,4 @@ class Dashboard {
 		echo '<div id="rmgw_dashboard-widget"></div>';
 
 	}
-
-
 }

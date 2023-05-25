@@ -1,5 +1,3 @@
-const react = require('eslint-plugin-react');
-
 module.exports = {
   env: {
     browser: true,
@@ -16,13 +14,13 @@ module.exports = {
     sourceType: 'module'
   },
   plugins: [
-    'react',
+    'react'
   ],
   rules: {
   },
   settings: {
     react: {
-      version: "detect"
+      version: 'detect'
     }
   }
 }

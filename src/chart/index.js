@@ -1,68 +1,75 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import 'resize-observer-polyfill'
 import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, CartesianGrid, Tooltip, Legend } from 'recharts'
+import apiFetch from '@wordpress/api-fetch'
+import { SelectControl } from '@wordpress/components'
+import { useEffect, useState } from '@wordpress/element'
 
 const Chart = ({ chartHeight = '100%' }) => {
-  /**
-   * Data state.
-   */
-  const [selectFilter, setSelectFilter] = useState(7)
-  const [chartData, setChartData] = useState([])
+  const fetchData = async () => {
+    let response = []
+    try {
+      apiFetch.use(apiFetch.createNonceMiddleware(window.graphWidgetSettings.nonce))
+      response = await apiFetch({
+        path: '/wp-json/rankmath/v1/widget/dashboard',
+        method: 'GET'
+      })
 
-  /**
-   * Error states.
-   */
-  const [isError, setIsError] = useState(false)
-
-  useEffect(() => {
-    setIsError(false)
-    const fetchData = async () => {
-      try {
-        const response = await fetch(window.graphWidgetSettings.siteUrl + 'rankmath/v1/widget/dashboard')
-        const data = await response.json()
-        setChartData(data)
-      } catch (error) {
-        setIsError(true)
-      }
+      setIsError(false)
+    } catch (error) {
+      setIsError(true)
     }
 
+    setChartData(response)
+  }
+
+  useEffect(() => {
     fetchData()
   }, [])
 
-  const handleChange = (event) => {
-    setSelectFilter(event.target.value)
+  /**
+   * Data state.
+   */
+  const [chartData, setChartData] = useState([])
+  const [isError, setIsError] = useState(false)
+  const [selectFilter, setSelectFilter] = useState(7)
+  const handleChange = (value) => {
+    setSelectFilter(value)
   }
 
-  const filteredData = chartData.slice(-selectFilter)
+  const filteredData = chartData?.slice(-selectFilter)
 
   return (
-        <div className={'dashboard-widget'}>
-          { isError === 0 && <div className={'dashboard-widget-error'}>Error in loading Data</div> }
-          <div className={'dashboard-widget-container'}>
-            <div className={'dashboard-select'}>
-              <select
-                  id="filter-select"
-                  data-testid="filter-select"
-                  value={selectFilter}
-                  onChange={handleChange}
-              >
-                <option value={7}>Last 7 DAYS</option>
-                <option value={15}>Last 15 DAYS</option>
-                <option value={30}>Last 30 DAYS</option>
-              </select>
-            </div>
-            <ResponsiveContainer width={'100%'} height={chartHeight} aspect={1}>
-              <LineChart width={'100%'} height={470} data={filteredData}>
-                <CartesianGrid strokeDasharray="3,4" />
-                <XAxis dataKey="day" />
-                <YAxis dataKey="value" />
-                <Legend />
-                <Line type="monotone" dataKey="value" stroke="#8884d8" />
-                <Tooltip />
-              </LineChart>
-            </ResponsiveContainer>
+    <div className={'dashboard-widget'}>
+      {isError && <div className={'dashboard-widget-error'}>Error in loading Data</div>}
+      {!isError &&
+        <div className={'dashboard-widget-container'}>
+          <div className={'dashboard-select'}>
+            <SelectControl
+              id="filter-select"
+              data-testid="filter-select"
+              value={`${selectFilter}`}
+              options={ [
+                { label: 'Last 7 DAYS', value: 7 },
+                { label: 'Last 15 DAYS', value: 15 },
+                { label: 'Last 30 DAYS', value: 30 }
+              ] }
+              onChange={ (value) => handleChange(value) }
+            />
           </div>
+          <ResponsiveContainer width={'100%'} height={chartHeight} aspect={1}>
+            <LineChart width={'100%'} height={470} data={filteredData}>
+              <CartesianGrid strokeDasharray="3,4" />
+              <XAxis dataKey="day" />
+              <YAxis dataKey="value" />
+              <Legend />
+              <Line type="monotone" dataKey="value" stroke="#8884d8" />
+              <Tooltip />
+            </LineChart>
+          </ResponsiveContainer>
         </div>
+      }
+    </div>
   )
 }
 

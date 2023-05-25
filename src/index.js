@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Chart from "./chart";
+import Chart from './chart'
 
 /**
  * Render chart if targeted element is observed.

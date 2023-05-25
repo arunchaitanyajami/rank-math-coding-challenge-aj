@@ -11,26 +11,75 @@ exports[`Chart Component Needs a Snapshot 1`] = `
       <div
         class="dashboard-select"
       >
-        <select
-          data-testid="filter-select"
-          id="filter-select"
+        <div
+          class="components-base-control css-ij2po-Wrapper-boxSizingReset ej5x27r4"
         >
-          <option
-            value="7"
+          <div
+            class="components-base-control__field css-10urnh1-StyledField-deprecatedMarginField ej5x27r3"
           >
-            Last 7 DAYS
-          </option>
-          <option
-            value="15"
-          >
-            Last 15 DAYS
-          </option>
-          <option
-            value="30"
-          >
-            Last 30 DAYS
-          </option>
-        </select>
+            <div
+              class="components-flex components-select-control em5sgkm7 css-1dhm0tx-View-Flex-base-ItemsColumn-Root e19lxcc00"
+              data-wp-c16t="true"
+              data-wp-component="Flex"
+            >
+              <div
+                class="components-input-control__container css-1o1a8cj-Container-containerDisabledStyles-containerWidthStyles em5sgkm6"
+              >
+                <select
+                  class="components-select-control__input css-ec4xne-Select-fontSizeStyles-sizeStyles e1mv6sxx2"
+                  data-testid="filter-select"
+                  id="filter-select"
+                >
+                  <option
+                    value="7"
+                  >
+                    Last 7 DAYS
+                  </option>
+                  <option
+                    value="15"
+                  >
+                    Last 15 DAYS
+                  </option>
+                  <option
+                    value="30"
+                  >
+                    Last 30 DAYS
+                  </option>
+                </select>
+                <span
+                  class="components-input-control__suffix css-oobb1x-Suffix em5sgkm0"
+                >
+                  <div
+                    class="components-spacer components-input-control-suffix-wrapper e1mv6sxx0 css-pbf063-View-classes-InputControlSuffixWrapperWithClickThrough e19lxcc00"
+                    data-wp-c16t="true"
+                    data-wp-component="InputControlSuffixWrapper"
+                  >
+                    <div
+                      class="css-1j80ye7-DownArrowWrapper e1mv6sxx1"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        focusable="false"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        width="18"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M17.5 11.6L12 16l-5.5-4.4.9-1.2L12 14l4.5-3.6 1 1.2z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </span>
+                <div
+                  aria-hidden="true"
+                  class="components-input-control__backdrop css-14s41nl-BackdropUI-backdropFocusedStyles em5sgkm2"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div
         class="recharts-responsive-container"
@@ -722,10 +771,11 @@ exports[`Chart Component Needs a Snapshot 1`] = `
             >
               <path
                 class="recharts-curve recharts-line-curve"
-                d="M800,215Z"
+                d="M65,225.37499999999997C87.22222222222223,144.74999999999997,109.44444444444446,64.12499999999997,131.66666666666669,64.12499999999997C153.8888888888889,64.12499999999997,176.11111111111111,64.12499999999997,198.33333333333334,64.12499999999997C220.55555555555557,64.12499999999997,242.77777777777777,64.12499999999997,265,64.12499999999997C287.22222222222223,64.12499999999997,309.44444444444446,64.12499999999997,331.6666666666667,64.12499999999997C353.8888888888889,64.12499999999997,376.11111111111114,64.12499999999997,398.33333333333337,64.12499999999997C420.5555555555556,64.12499999999997,442.77777777777777,64.12499999999997,465,64.12499999999997"
                 fill="none"
                 height="430"
                 stroke="#8884d8"
+                stroke-dasharray="0px 0px"
                 stroke-width="1"
                 width="400"
               />

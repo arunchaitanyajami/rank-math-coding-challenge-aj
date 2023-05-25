@@ -26,11 +26,12 @@
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
         "wp-coding-standards/wpcs": "^2.3",
         "phpunit/phpunit": "^9.6",
-        "10up/wp_mock": "^0.5.0"
+        "10up/wp_mock": "^0.5.0",
+        "automattic/vipwpcs": "^2.3"
     },
     "scripts": {
-        "lint:phpcs" : "@php ./vendor/bin/phpcs .",
-        "lint:fix" : "@php ./vendor/bin/phpcbf .",
+        "lint:phpcs" : "@php ./vendor/bin/phpcs --standard=phpcs.xml",
+        "lint:fix" : "@php ./vendor/bin/phpcbf",
         "tests" : "@php ./vendor/bin/phpunit --testsuite unit --testdox"
     }
 }
